@@ -1,12 +1,5 @@
 '''
-ระบุ argument ด้วยชื่อ
+ข้อความสามารถอยู่ในคำพูดเดี่ยวหรือคู่
 '''
-
-
-def full_name(first="What", last="Som"):
-    print(first + " " + last)
-
-
-full_name("Joel", "Grus")
-full_name("Joel")
-full_name(last="Grus")
+sing_quoted_string = 'data science'
+double_quoted_string = "data science"
