@@ -1,11 +1,12 @@
 '''
-กำหนดค่าเริ่มต้น ของ พารามิเตอร์ ของ function
+ระบุ argument ด้วยชื่อ
 '''
 
 
-def my_print(message="my default message"):
-    print(message)
+def full_name(first="What", last="Som"):
+    print(first + " " + last)
 
 
-my_print("Hello")
-my_print()
+full_name("Joel", "Grus")
+full_name("Joel")
+full_name(last="Grus")
