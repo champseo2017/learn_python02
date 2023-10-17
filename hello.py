@@ -1,10 +1,8 @@
-# พิมพ์ข้อความและใช้ r หน้าสตริงเพื่อแสดงอักขระ escape ในรูปแบบของ raw string
-# การใช้ r หน้าสตริง (เรียกว่า raw string) ใน Python จะทำให้อักขระ escape ไม่ถูกแปลงเป็นความหมายพิเศษ แต่จะถูกแสดงเป็นแบบที่เป็นตัวอักษรปกติ
-print(r"แบ็กสแลท (\) เพื่อระบุถึงอักขระพิเศษ")
+# f-string แทนค่าลงในเงื่อนไข
+first_name = "Joel"
+last_name = "Grus"
 
-# กำหนดตัวแปร tab_string ให้เท่ากับ "\t" ซึ่งเป็นอักขระ escape สำหรับแท็บ
-tab_string = "\t"
-
-# ใช้ฟังก์ชัน len() เพื่อหาความยาวของสตริง และพิมพ์ผลลัพธ์ออกมา
-# ในกรณีนี้ "\t" ถูกนับเป็นอักขระเดียว
-print(len(tab_string))
+full_name1 = first_name + " " + last_name
+full_name2 = "{0}{1}".format(first_name, last_name)
+full_name3 = f"{first_name} {last_name}"
+print(full_name3)
