@@ -1,30 +1,26 @@
-# คำสั่ง in เพื่อตรวจสอบการเป็นสมาชิกในรายการ
+# Tuple
+# มีลักษณะคล้ายกับ List ทุกอย่างที่ทำกับ List สามารถทำได้กับ Tuple
+# ยกเว้นการแก้ไข จะใช้ วงเล็บ หรือ ไม่ใช้ วงเล็บก็ได้
 
-tt = 1 in [1, 2, 3]
-0 in [1, 2, 3]
-# print(tt)
+my_list = [1, 2]  # list เป็น mutable สามารถแก้ไขได้
+my_tuple = (1, 2)  # Tuple ไม่สามารถแก้ไขได้ เป็น immutable
+other_tuple = 3, 4
+my_list[1] = 3
 
-# การเชื่อมรายการเข้าด้วยกันก็ทำได้ง่าย ใช้ extend
-x = [1, 2, 3]
-# x.extend([4, 5, 6])
+try:
+    my_tuple[1] = 3
+except TypeError:
+    print("cannot modify a tuple")
+# Tuple ถือเป็นวิธีที่สะดวกในการคืนค่าหลายค่าจากฟังก์ชัน
 
-# การเพิ่มรายการ
-y = x + [4, 5, 6]
-# print(y)
 
-# เพิ่มข้อมูลต่อท้ายรายการ
-x = [1, 2, 3]
-x.append(0)
-y = x[-1]
-z = len(x)
-# print(x)
-# print(y)
-# print(z)
+def sum_and_product(x, y):
+    return (x + y), (x * y)  # Tuple
 
-# แยกรายการ เมื่อรู้ว่ามีองค์ประกอบจำนวนเท่าใด
-x, y = [1, 2]
-# print(x, y)
 
-# ใช้ underscore สำหรับค่าที่ไม่สนใจ
-_, y = [1, 2]
-# print(_)
+sp = sum_and_product(2, 3)
+s, p = sum_and_product(5, 10)
+
+# กำหนดค่าแบบหลายรายการ
+x, y = 1, 2
+x, y = y, x
