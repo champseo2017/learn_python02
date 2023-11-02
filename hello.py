@@ -1,46 +1,56 @@
-# Dictionary เชื่อมโยงค่าต่างๆ กับคีย์ สามารถดึงค่าที่สอดคล้องกับ คีย์ที่กำหนด
-empty_dict = {}
-empty_dict2 = dict()
-grades = {"Joel": 80, "Tim": 95}
+from collections import defaultdict
 
-# หาค่าของคีย์โดยใช้วงเล็บเหลี่ยม
-joels_grade = grades["Joel"]
+# defaultdict
+# สร้าง dictionary ที่ชื่อว่า word_counts เพื่อจัดเก็บจำนวนคำ
+""" 
+`split()` คือเมธอดใน Python ที่ใช้แยกสตริงเป็นลิสต์ของคำโดยใช้ตัวแยก (delimiter) ที่กำหนด หากไม่ได้กำหนดตัวแยก, `split()` จะใช้ช่องว่างเป็นตัวแยกโดยปริยาย. 
 
+ใน code `document = "the quick brown fox jumps over the lazy dog".split()` นี้, `split()` จะแยกสตริง `"the quick brown fox jumps over the lazy dog"` ให้เป็นลิสต์ของคำ `[ "the", "quick", "brown", "fox", "jumps", "over", "the", "lazy", "dog"]` และเก็บลิสต์นี้ในตัวแปร `document`.
 
-# ได้รับ keyError หากเรียกใช้คีย์ที่ไม่มีอยู่ใน Dictionary
-try:
-    kates_grade = grades["Kate"]
-except KeyError:
-    print("no grade for Kate!")
+"""
+word_counts = {}
 
-# ตรวจสอบการมีอยู่ของคีย์ได้โดยใช้คำสั่งนี้
-joel_has_grade = "Joel" in grades  # True
-kate_has_grade = "Kate" in grades  # False
+# กำหนด document เป็นตัวแปรที่มีข้อมูลตัวอักษรหรือคำ
+document = "the quick brown fox jumps over the lazy dog".split()
 
+# วน loop ทำงานในแต่ละคำที่อยู่ใน document
+for word in document:
+    # ตรวจสอบว่าคำนี้มีอยู่ใน dictionary word_counts หรือไม่
+    if word in word_counts:
+        # ถ้ามี, เพิ่มจำนวนนับของคำนี้ใน dictionary 1 หน่วย
+        word_counts[word] += 1
+    else:
+        # ถ้าไม่มี, เพิ่มคำนี้ลงใน dictionary ด้วยค่านับเป็น 1
+        word_counts[word] = 1
 
-# ใช้ method get ส่งค่าเริ่มต้นกลับมา เมื่อค่าคีย์ไม่อยู่ใน Dictionary
-joels_grade = grades.get("Joel", 0)  # equals 80
-kates_grade = grades.get("Kate", 0)  # equals 0
-no_ones_grade = grades.get("No One")  # default is None
+# พิมพ์ dictionary word_counts แสดงผลลัพธ์
+# print(word_counts)
 
-# กำหนดคีย์ / ค่า ใน []
-grades["Tim"] = 99  # replaces the old value
-grades["Kate"] = 100  # adds a third entry
-num_students = len(grades)  # equals 3
+# ใช้  except KeyError
+word_counts2 = {}
+for word in document:
+    try:
+        word_counts2[word] += 1
+    except KeyError:
+        word_counts2[word] = 1
+# print(word_counts2)
 
-# ใช้ Dictionary เก็บข้อมูลที่มีโครงสร้าง
-tweet = {
-    "user": "joelgrus",
-    "text": "Data Science is Awesome",
-    "retweet_count": 100,
-    "hashtags": ["#data"]
-}
+# ใช้ get ทำงานกับคีย์ที่ยังไม่มี
+word_counts3 = {}
+for word in document:
+    previous_count = word_counts3.get(word, 0)
+    word_counts3[word] = previous_count + 1
 
-# ดู key ทั้งหมด
-tweet_keys = tweet.keys()  # iterable for the keys
-tweet_values = tweet.values()  # iterable for the values
-tweet_items = tweet.items()  # iterable for the (key, value) tuples
+# print(word_counts3)
 
-"user" in tweet_keys  # True, but not Pythonic
-"user" in tweet  # Pythonic way of checking for keys
-"joelgrus" in tweet_values  # True (slow but the only way to check)
+""" 
+1. `word_counts4 = defaultdict(int)`: สร้าง `defaultdict` ที่ชื่อ `word_counts4` โดยมีค่าเริ่มต้นเป็น 0 (เพราะ `int()` จะคืนค่า 0).
+2. `for word in document:`: วนลูปทำงานในแต่ละคำที่อยู่ใน `document`.
+3. `word_counts[word] += 1`: เพิ่มจำนวนนับของคำนี้ใน `word_counts4` 1 หน่วย.
+
+จะเห็นว่าในโค้ดนี้ไม่ต้องมีการตรวจสอบ `if word in word_counts4:` เพราะ `defaultdict` จะสร้างคีย์ใหม่โดยอัตโนมัติกับค่าเริ่มต้นเป็น 0 ถ้าคีย์นั้นยังไม่มีอยู่.
+
+"""
+word_counts4 = defaultdict(int)
+for word in document:
+    word_counts[word] += 1
