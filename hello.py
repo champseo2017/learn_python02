@@ -1,56 +1,19 @@
 from collections import defaultdict
 
-# defaultdict
-# สร้าง dictionary ที่ชื่อว่า word_counts เพื่อจัดเก็บจำนวนคำ
 """ 
-`split()` คือเมธอดใน Python ที่ใช้แยกสตริงเป็นลิสต์ของคำโดยใช้ตัวแยก (delimiter) ที่กำหนด หากไม่ได้กำหนดตัวแยก, `split()` จะใช้ช่องว่างเป็นตัวแยกโดยปริยาย. 
+เมื่อคุณใช้คำสั่ง `dd_pair[2][1] = 1`, มันจะทำหลายขั้นตอน:
 
-ใน code `document = "the quick brown fox jumps over the lazy dog".split()` นี้, `split()` จะแยกสตริง `"the quick brown fox jumps over the lazy dog"` ให้เป็นลิสต์ของคำ `[ "the", "quick", "brown", "fox", "jumps", "over", "the", "lazy", "dog"]` และเก็บลิสต์นี้ในตัวแปร `document`.
+1. Python จะตรวจสอบว่า `dd_pair` มี key `2` หรือไม่. ในกรณีนี้, `dd_pair` ยังไม่มี key `2`, ดังนั้นมันจะใช้ฟังก์ชัน factory (`lambda: [0, 0]`) เพื่อสร้างค่าเริ่มต้นสำหรับ key `2`, ซึ่งคือ `[0, 0]`.
+
+2. ต่อจากนั้น, มันจะใช้ index `1` เพื่อเข้าถึงสมาชิกที่สองของรายการ `[0, 0]`, และจากนั้นมันจะตั้งค่าสมาชิกนี้เป็น `1`.
+
+ผลลัพธ์คือ `dd_pair` ตอนนี้มีค่าเป็น `{2: [0, 1]}`.
 
 """
-word_counts = {}
 
-# กำหนด document เป็นตัวแปรที่มีข้อมูลตัวอักษรหรือคำ
-document = "the quick brown fox jumps over the lazy dog".split()
-
-# วน loop ทำงานในแต่ละคำที่อยู่ใน document
-for word in document:
-    # ตรวจสอบว่าคำนี้มีอยู่ใน dictionary word_counts หรือไม่
-    if word in word_counts:
-        # ถ้ามี, เพิ่มจำนวนนับของคำนี้ใน dictionary 1 หน่วย
-        word_counts[word] += 1
-    else:
-        # ถ้าไม่มี, เพิ่มคำนี้ลงใน dictionary ด้วยค่านับเป็น 1
-        word_counts[word] = 1
-
-# พิมพ์ dictionary word_counts แสดงผลลัพธ์
-# print(word_counts)
-
-# ใช้  except KeyError
-word_counts2 = {}
-for word in document:
-    try:
-        word_counts2[word] += 1
-    except KeyError:
-        word_counts2[word] = 1
-# print(word_counts2)
-
-# ใช้ get ทำงานกับคีย์ที่ยังไม่มี
-word_counts3 = {}
-for word in document:
-    previous_count = word_counts3.get(word, 0)
-    word_counts3[word] = previous_count + 1
-
-# print(word_counts3)
-
-""" 
-1. `word_counts4 = defaultdict(int)`: สร้าง `defaultdict` ที่ชื่อ `word_counts4` โดยมีค่าเริ่มต้นเป็น 0 (เพราะ `int()` จะคืนค่า 0).
-2. `for word in document:`: วนลูปทำงานในแต่ละคำที่อยู่ใน `document`.
-3. `word_counts[word] += 1`: เพิ่มจำนวนนับของคำนี้ใน `word_counts4` 1 หน่วย.
-
-จะเห็นว่าในโค้ดนี้ไม่ต้องมีการตรวจสอบ `if word in word_counts4:` เพราะ `defaultdict` จะสร้างคีย์ใหม่โดยอัตโนมัติกับค่าเริ่มต้นเป็น 0 ถ้าคีย์นั้นยังไม่มีอยู่.
-
-"""
-word_counts4 = defaultdict(int)
-for word in document:
-    word_counts[word] += 1
+dd_list = defaultdict(list)  # list() ผลิตรายการที่ว่างเปล่า
+dd_list[2].append(1)  # now dd_list contains {2: [1]}
+dd_dict = defaultdict(dict)  # dict() produces an empty dict
+dd_dict["Joel"]["City"] = "Seattle"
+dd_pair = defaultdict(lambda: [0, 0])
+dd_pair[2][1] = 1  # now dd_pair contains {2: [0, 1]}
