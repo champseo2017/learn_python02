@@ -19,6 +19,7 @@ stopwords_set = set(stopwords_list)
 "zip" in stopwords_set  # very fast to check
 
 # ใช้ค้นหารายการที่แตกต่างกัน
+# ปกติเราจะใช้ set น้อยกว่า dictionary และ list
 item_list = [1, 2, 3, 1, 2, 3]
 num_items = len(item_list)
 item_set = set(item_list)
