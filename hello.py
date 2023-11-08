@@ -1,21 +1,28 @@
-# Counter เปลียนลำดับของค่าให้เป็น คีย์ และ นับจำนวนให้ด้วย
-from collections import Counter
-c = Counter([0, 1, 2, 0])  # c is (basically) {0: 2, 1: 1, 2: 1}
 
-document = "the quick brown fox jumps over the lazy dog".split()
-word_counts = Counter(document)
+# Set เก็บชุดขององค์ประกอบที่แตกต่างกัน กำหนดด้วยวงเล็บปีกกา
+primes_below_10 = {2, 3, 5, 7}
 
-# most_common
-# print the 10 most common words and their counts
-""" 
-1. `document = "the quick brown fox jumps over the lazy dog".split()` จะสร้าง `document` เป็นรายการของคำจากสตริงที่กำหนด, โดยใช้ `split()` เพื่อแยกคำตามช่องว่าง.
+s = set()
+s.add(1)  # s is now {1}
+s.add(2)  # s is now {1, 2}
+s.add(2)  # s is still {1, 2}
+# x = len(2)  # equals 2
+y = 2 in s  # equals True
+z = 3 in s  # equals False
 
-2. `word_counts = Counter(document)` จะสร้างออบเจ็กต์ `Counter` จากรายการ `document`, ทำให้ `word_counts` นับจำนวนครั้งของแต่ละคำที่ปรากฏใน `document`.
+# ใช้ set ด้วยหลัก 2 ประการ 1. in จะทำงานได้เร็วมากกับ set หากมีข้อมูลจำนวนมาก
+# การใช้ set จะเหมาะสมกว่า list
 
-3. `for word, count in word_counts.most_common(10):` จะวนลูปผ่าน 10 คู่คำที่มีจำนวนครั้งสูงสุดใน `word_counts` (ในกรณีนี้, มีแค่ 9 คำที่ไม่ซ้ำกันใน `document`, ดังนั้นลูปจะวนเพียง 9 ครั้ง).
+stopwords_list = ["a", "an", "at"] + ["yet", "you"]
+"zip" in stopwords_list  # False, but have to check every element
+stopwords_set = set(stopwords_list)
+"zip" in stopwords_set  # very fast to check
 
-4. `print(word, count)` จะพิมพ์คำและจำนวนครั้งที่คำนั้นปรากฏใน `word_counts` ลงในคอนโซล.
+# ใช้ค้นหารายการที่แตกต่างกัน
+item_list = [1, 2, 3, 1, 2, 3]
+num_items = len(item_list)
+item_set = set(item_list)
+num_distinct_items = len(item_set)
+distinct_item_list = list(item_set)
 
-"""
-for word, count in word_counts.most_common(10):
-    print(word, count)
+print(item_set)
