@@ -1,29 +1,33 @@
 
-# Set เก็บชุดขององค์ประกอบที่แตกต่างกัน กำหนดด้วยวงเล็บปีกกา
-primes_below_10 = {2, 3, 5, 7}
+# ควบคุมการทำงาน
+# สามารถดำเนินการตามเงื่อนไขได้โดยใช้คำสั่ง if
+if 1 > 2:
+    message = "if only 1 were greater than two..."
+elif 1 > 3:
+    message = "when all else fails use else (if you want to)"
+else:
+    message = ""
 
-s = set()
-s.add(1)  # s is now {1}
-s.add(2)  # s is now {1, 2}
-s.add(2)  # s is still {1, 2}
-# x = len(2)  # equals 2
-y = 2 in s  # equals True
-z = 3 in s  # equals False
+# เขียนคำสั่ง if-then-else ได้ในบรรทัดเดียวกัน
 
-# ใช้ set ด้วยหลัก 2 ประการ 1. in จะทำงานได้เร็วมากกับ set หากมีข้อมูลจำนวนมาก
-# การใช้ set จะเหมาะสมกว่า list
+x = 10
+parity = "even" if x % 2 == 0 else "odd"
 
-stopwords_list = ["a", "an", "at"] + ["yet", "you"]
-"zip" in stopwords_list  # False, but have to check every element
-stopwords_set = set(stopwords_list)
-"zip" in stopwords_set  # very fast to check
+# ใช้ while สำหรับการวนซ้ำ
+x = 0
+# while x < 10:
+#     print(f"{x} is less than 10")
+#     x += 1
 
-# ใช้ค้นหารายการที่แตกต่างกัน
-# ปกติเราจะใช้ set น้อยกว่า dictionary และ list
-item_list = [1, 2, 3, 1, 2, 3]
-num_items = len(item_list)
-item_set = set(item_list)
-num_distinct_items = len(item_set)
-distinct_item_list = list(item_set)
+# หลายครั้งเราจะใช้ for และ in
+# for x in range(10):
+#     print(f"{x} is less than 10")
 
-print(item_set)
+# ถ้าต้องการเงื่อนไขที่ซับซ้อนขึ้น สามารถใช้ continue และ break
+for x in range(10):
+    if x == 3:
+        continue  # go immediately to the next iteration
+    if x == 5:
+        break  # quit the loop entirely
+    print(x)
+# แสดงตัวเลข 0, 1, 2 และ 4
