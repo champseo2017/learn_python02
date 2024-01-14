@@ -1,9 +1,9 @@
+# การทดสอบและยืนยัน
+# โดย assert จะทําการตรวจสอบเงื่อนไขที่ใส่เข้าไปให้ โดยถ้าเงื่อนไขเป็น False จะทําให้โปรแกรม error ออกมา แต่ถ้าเงื่อนไขเป็น True ก็จะไม่มีอะไรเกิดขึ้น
 
-# for สามารถใช้ผลลัพธ์จาก for ก่อนหน้าได้
-# สร้างรายการของคู่ตัวเลข (x, y) โดยที่ x และ y เป็นจำนวนเต็มและ y > x
-increasing_pairs = [
-    (x, y)  # สร้างคู่ตัวเลข (x, y)
-    for x in range(10)  # วนลูป x จาก 0 ถึง 9
-    for y in range(x + 1, 10)  # วนลูป y จาก x + 1 ถึง 9 สำหรับแต่ละค่าของ x
-]
-print(increasing_pairs)  # แสดงรายการของคู่ตัวเลขที่มีค่าเพิ่มขึ้น
+def smallest_item(xs):
+    assert xs, "empty list has no small item"
+    return min(xs)
+
+
+assert smallest_item([1]) == 1
